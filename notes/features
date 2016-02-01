@@ -1,0 +1,12 @@
+musicbook:
+- app web de stockage en cloud d'un catalogue d'artistes/albums/morceaux/lives...
+
+features:
+- crud musical items
+- at least one field required => no sql preferred
+- style tagging (custom tags => crud here too)
+- complex search (by artist, toggled style tags..., add time)
+- accounts
+- [later] friends & item sharing
+- [later] playlist creation & youtube/soundcloud integration
+- [later] on the fly playlist update

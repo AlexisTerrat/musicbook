@@ -1,0 +1,41 @@
+MusicalItem:
+- id: uid
+- userId: uid
+- createdAt: Date
+- updatedAt: Date
+- artist: string (optional) [later]
+- album: string (optional) [later]
+- title: string (optional)
+- live: boolean (optional) [later]
+- links: Array<string> (must be valid link.id) (optional) [later]
+- tags: Array<string> (must be valid tag.id) (optional)
+
+Link: [later]
+- id: uid
+- itemId: uid
+- type: string ('youtube' || 'soundcloud')
+- url: string (valid http url)
+
+Tag:
+- id: uid
+- userId: uid
+- createdAt: Date
+- updatedAt: Date
+- name: string
+
+Users:
+- id: uid
+- createdAt: Date
+- updatedAt: Date
+- name: string (unique)
+- email: string [later]
+- password: hashed & salted string [later]
+- salt: string [later]
+
+Or use Books of items
+=> search in one book at a time (a music item is always contained in a book)
+books are public ? accessible at a specific & izy url (like fb accounts ?)
+need account to create or update books (and be its owner ofc)
+but no need to view a book
+-> items can be in ordered & tags are local to a book ?
+-> close to a playlist

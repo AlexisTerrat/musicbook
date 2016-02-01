@@ -1,0 +1,11 @@
+Accueil:
+- signup button -> SignUp page
+- login form (name only) + [enter] or button -> MyBook page
+
+SignUp page:
+- like login form
+
+MyBook page:
+add item form (incl add/rm tag)
+search form (select some tags, included string search)
+search results

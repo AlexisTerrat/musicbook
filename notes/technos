@@ -1,0 +1,2 @@
+front: angular/bootstrap
+back: express static and rest service for crud ops + sql/sequelize -> [later] mongodb
