@@ -1,0 +1,31 @@
+Items:
+
+Item: { id, title }
+Tag: { id, name }
+
+
+Items:
+  GET /api/items
+    return [item]
+  GET /api/item/:itemId
+    return item
+  POST /api/item { title }
+    return item
+  PUT /api/item/:itemId { title }
+  DELETE /api/item/:itemId
+
+ItemTags:
+  GET /api/item/:itemId/tags
+    return [tags]
+  POST /api/item/:itemId/tag/:tagId
+  DELETE /api/item/:itemId/tag/:tagId
+
+Tags:
+  GET /api/tags
+    return [tag]
+  GET /api/tag/:tagId
+    return tag
+  POST /api/tag { name }
+    return tag
+  PUT /api/tag/:tagId { name }
+  DELETE /api/tag/:tagId

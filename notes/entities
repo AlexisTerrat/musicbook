@@ -1,6 +1,6 @@
-MusicalItem:
+Item:
 - id: uid
-- userId: uid
+- userId: uid [later]
 - createdAt: Date
 - updatedAt: Date
 - artist: string (optional) [later]
@@ -18,12 +18,12 @@ Link: [later]
 
 Tag:
 - id: uid
-- userId: uid
+- userId: uid [later]
 - createdAt: Date
 - updatedAt: Date
 - name: string
 
-Users:
+Users: [later]
 - id: uid
 - createdAt: Date
 - updatedAt: Date

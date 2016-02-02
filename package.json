@@ -1,0 +1,25 @@
+{
+  "name": "musicbook",
+  "description": "webapp utility to store favorite music in the cloud",
+  "dependencies": {
+    "underscore": "*",
+    "when": "*",
+    "express": "*",
+    "body-parser": "*",
+    "sequelize": "*",
+    "pg": "*"
+  },
+  "scripts": {
+    "build": "bash scripts/build.sh",
+    "start": "bash scripts/start.sh",
+    "stop": "bash scripts/stop.sh",
+    "clean": "bash scripts/clean.sh",
+    "test": "echo 'TODO'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AlexisTerrat/musicbook.git"
+  },
+  "homepage": "https://github.com/AlexisTerrat/musicbook",
+  "author": "Alexis Terrat"
+}
