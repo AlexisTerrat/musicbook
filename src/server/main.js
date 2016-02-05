@@ -8,7 +8,7 @@ var Router = require('./router.js');
   var connector = new Connector();
   var router = new Router();
 
-  server.use('/', express.static('./public'));
+  server.use('/', express.static('src/webapp'));
   server.use('/api', bodyParser.json());
   server.use('/api', connector.middleware);
   server.use('/api', router.middleware);

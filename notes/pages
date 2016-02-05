@@ -9,3 +9,18 @@ MyBook page:
 add item form (incl add/rm tag)
 search form (select some tags, included string search)
 search results
+
+navbar (home/items/tags)
+
+home page:
+navbar
+little body text
+
+item page:
+navbar
+form to add an item
+item list (title & tags) with edit & delete buttons
+
+tag page:
+form to add a tag
+tag list (name) with edit & delete buttons

@@ -7,19 +7,18 @@
     "express": "*",
     "body-parser": "*",
     "sequelize": "*",
-    "pg": "*"
+    "pg": "*",
+    "bower": "*"
   },
   "scripts": {
-    "build": "bash scripts/build.sh",
-    "start": "bash scripts/start.sh",
-    "stop": "bash scripts/stop.sh",
-    "clean": "bash scripts/clean.sh",
-    "test": "echo 'TODO'"
+    "postinstall": "bower --allow-root install",
+    "start": "node src/server/main.js"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:AlexisTerrat/musicbook.git"
   },
   "homepage": "https://github.com/AlexisTerrat/musicbook",
-  "author": "Alexis Terrat"
+  "author": "Alexis Terrat",
+  "license": "MIT"
 }

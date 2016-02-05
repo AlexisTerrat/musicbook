@@ -1,0 +1,19 @@
+{
+  "name": "musicbook",
+  "dependencies": {
+    "angular": "1.4.9",
+    "angular-animate": "1.4.9",
+    "angular-resource": "1.4.9",
+    "angular-bootstrap": "0.14.3",
+    "angular-ui-router": "0.2.15",
+    "bootstrap": "3.3.6"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [ "dist/css/bootstrap.css" ],
+      "dependencies": {
+        "jquery": { "ignore": true }
+      }
+    }
+  }
+}
