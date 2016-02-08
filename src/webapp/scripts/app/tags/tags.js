@@ -7,7 +7,8 @@ angular.module('app')
     parent: 'site',
     views: {
       'content@site': {
-        templateUrl: 'scripts/app/tags/tags.html'
+        templateUrl: 'scripts/app/tags/tags.html',
+        controller: 'TagsController'
       }
     }
   });

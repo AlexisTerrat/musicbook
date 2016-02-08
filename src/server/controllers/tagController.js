@@ -46,6 +46,7 @@ controller
   })
 
   .put('/tag/:tagId', function(req, res) {
+    console.log('update', req.params.tagId, req.body);
     var name = req.body.name;
     if (!name) {
       res.status(400).send('bad request');
@@ -65,6 +66,7 @@ controller
   })
 
   .delete('/tag/:tagId', function(req, res) {
+    console.log('delete tag', req.params.tagId, req.body);
     req.connector.Tag.findById(req.params.tagId)
     .then(function(tag) {
       return tag.destroy();

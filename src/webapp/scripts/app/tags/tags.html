@@ -2,31 +2,56 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <div class="row">
-        <span class="col-md-11">Tags</span>
-        <span class="col-md-1"><button type="button" class="btn btn-default">add</button></span>
+        <span class="col-md-9">Tags</span>
+
+        <form class="col-md-3">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="tagName" ng-model="tagNameToAdd"/>
+            <span class="input-group-btn">
+              <button type="submit" ng-click="add()" class="btn btn-default">add</button>
+            </span>
+          </div>
+        </form>
       </div>
     </div>
-    <table class="table table-hover">
-      <tr class="row" ng-mouseenter="overBlues = true" ng-mouseleave="overBlues = false">
-        <td class="col-md-11">blues</td>
-        <td class="col-md-1">
-          <button class="glyphicon glyphicon-pencil" ng-show="overBlues"></button>
-          <button class="glyphicon glyphicon-remove-circle" ng-show="overBlues"></button>
-        </td>
-      </tr>
-      <tr class="row" ng-mouseenter="overFunk = true" ng-mouseleave="overFunk = false">
-        <td class="col-md-11">funk</td>
-        <td class="col-md-1">
-          <button class="glyphicon glyphicon-pencil" ng-show="overFunk"></button>
-          <button class="glyphicon glyphicon-remove-circle" ng-show="overFunk"></button>
-        </td>
-      </tr>
-      <tr class="row" ng-mouseenter="overJazz = true" ng-mouseleave="overJazz = false">
-        <td class="col-md-11">jazz</td>
-        <td class="col-md-1">
-          <button class="glyphicon glyphicon-pencil" ng-show="overJazz"></button>
-          <button class="glyphicon glyphicon-remove-circle" ng-show="overJazz"></button>
-        </td>
+
+    <table class="table table-hover" ng-model="tags" ng-change="load()">
+      <tr ng-repeat="tag in tags track by tag.id"
+          ng-mouseenter="tag.active = true" ng-mouseleave="tag.active = false">
+          <div class="row">
+            <td class="text-left col-md-9" ng-hide="tag.editorOn">
+              <span>{{tag.name}}</span>
+            </td>
+
+            <td class="text-left col-md-9" ng-show="tag.editorOn">
+              <form class="form-inline">
+                <div class="input-group-xs">
+                  <input type="text" class="form-control-xs col-md-7" placeholder={{tag.name}} ng-model="tag.newName"/>
+                  <span class="input-group-btn">
+                    <div class="btn-group-xs col-md-2">
+                      <button type="submit" class="btn btn-default" ng-click="rename(tag); tag.editorOn = false">
+                        <span class="glyphicon glyphicon-ok" />
+                      </button>
+                      <button type="submit" class="btn btn-default" ng-click="tag.editorOn = false">
+                        <span class="glyphicon glyphicon-remove" />
+                      </button>
+                    </div>
+                  </span>
+                </div>
+              </form>
+            </td>
+
+            <td class="text-right col-md-3">
+              <div class="btn-group-xs">
+                <button type="button" class="btn btn-default" ng-show="tag.active && !tag.editorOn" ng-click="tag.editorOn = true">
+                  <span class="glyphicon glyphicon-pencil" />
+                </button>
+                <button type="button" class="btn btn-default" ng-show="tag.active" ng-click="delete(tag)">
+                  <span class="glyphicon glyphicon-remove" />
+                </button>
+              </div>
+            </td>
+          </div>
       </tr>
     </table>
   </div>
