@@ -1,0 +1,14 @@
+- security and user handling with cookies & all
+- items
+- search feature
+- integration with youtube & soundcloud
+- playlist generation from search results
+- integration with last.fm or other api to enrich data
+    => http://www.programmableweb.com/news/25-music-apis/2008/02/21
+
+- for all application maybe implement request throttling
+
+api's:
+- discogs: good for data enrichment, amybe less accurate for songs ? good: labels/records
+- last.fm: good for similar artists discovery & youtube integration
+- musicbrainz ?

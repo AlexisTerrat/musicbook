@@ -5,6 +5,7 @@ var when = require('when');
 var controller = express.Router();
 
 controller
+  // TODO
   .get('/items', function(req, res) {
     req.connector.Item.findAll()
     .then(function(items) {
@@ -17,7 +18,7 @@ controller
       res.status(404).send('not found');
     });
   })
-
+  // TODO
   .get('/item/:itemId', function(req, res) {
     req.connector.Item.findById(req.params.itemId)
     .then(function(item) {
@@ -28,7 +29,7 @@ controller
       res.status(404).send('not found');
     });
   })
-
+  // TODO
   .post('/item', function(req, res) {
     var title = req.body.title;
     if (!title) {
@@ -45,7 +46,7 @@ controller
       res.status(404).send('not found');
     });
   })
-
+  // TODO
   .put('/item/:itemId', function(req, res) {
     var title = req.body.title;
     if (!title) {
@@ -65,7 +66,7 @@ controller
       res.status(404).send('not found');
     });
   })
-
+  // TODO
   .delete('/item/:itemId', function(req, res) {
     req.connector.Item.findById(req.params.itemId)
     .then(function(item) {
@@ -78,7 +79,7 @@ controller
       res.status(404).send('not found');
     });
   })
-
+  // TODO
   .get('/item/:itemId/tags', function(req, res) {
     req.connector.Item.findById(req.params.itemId)
     .then(function(item) {
@@ -94,7 +95,7 @@ controller
       res.status(404).send('not found');
     });
   })
-
+  // TODO
   .post('/item/:itemId/tag/:tagId', function(res, req) {
     return when.all([
       req.connector.Item.findById(req.params.itemId),
@@ -112,7 +113,7 @@ controller
       res.status(404).send('not found');
     });
   })
-
+  // TODO
   .delete('/item/:itemId/tag/:tagId', function(req, res) {
     return when.all([
       req.connector.Item.findById(req.params.itemId),

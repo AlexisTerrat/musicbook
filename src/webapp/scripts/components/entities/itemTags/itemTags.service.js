@@ -1,37 +1,31 @@
 'use strict';
 
 angular.module('app')
-.service('Item', ['$resource', 'EventHandler', function($resource, EventHandler) {
-  var ItemResource = $resource('api/item/:id', { id: '@id' }, {
+.service('ItemTag', ['$resource', 'EventHandler', function($resource, EventHandler) {
+  var ItemTagResource = $resource('api/item/:itemId/tag/:tagId', { itemId: '@itemId', tagId: '@tagId' }, {
     list: {
       method: 'GET',
-      url: 'api/items',
+      url: 'api/item/:itemId/tags',
       isArray: true
     },
-    get: {
-      method: 'GET'
-    },
-    create: {
+    add: {
       method: 'POST'
-    },
-    rename: {
-      method: 'PUT'
     },
     delete: {
       method: 'DELETE'
     }
   });
 
-  var ItemService = {
+  var ItemTagService = { // TODO
     list: function() {
-      return ItemResource.list().$promise
-      .then(function(itemResources) {
+      return ItemTagResource.list().$promise
+      .then(function(itemTagResources) {
         var list = {};
-        _.each(itemResources, function(itemResource) {
-          var item = new Item(itemResource);
-          list[item.id] = item;
+        _.each(itemTagResources, function(itemTagResource) {
+          var itemTag = new ItemTag(itemTagResource);
+          list[item.id] = itemTag;
         });
-        EventHandler.emit('item.list', list);
+        EventHandler.emit('item.tag.list', list);
         return list;
       });
     },
@@ -40,7 +34,7 @@ angular.module('app')
       var itemResource = ItemResource.create({ name: name });
       return itemResource.$promise.then(function() {
         var item = new Item(itemResource);
-        EventHandler.emit('item.created', item);
+        EventHandler.emit('item.tag.created', item);
         return item;
       });
     }

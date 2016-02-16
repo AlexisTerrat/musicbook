@@ -1,10 +1,8 @@
 Item:
 - id: uid
 - userId: uid [later]
-- createdAt: Date
-- updatedAt: Date
-- artist: string (optional) [later]
-- album: string (optional) [later]
+- artist: string (optional)
+- album: string (optional)
 - title: string (optional)
 - live: boolean (optional) [later]
 - links: Array<string> (must be valid link.id) (optional) [later]
@@ -19,14 +17,10 @@ Link: [later]
 Tag:
 - id: uid
 - userId: uid [later]
-- createdAt: Date
-- updatedAt: Date
 - name: string
 
 Users: [later]
 - id: uid
-- createdAt: Date
-- updatedAt: Date
 - name: string (unique)
 - email: string [later]
 - password: hashed & salted string [later]
@@ -39,3 +33,4 @@ need account to create or update books (and be its owner ofc)
 but no need to view a book
 -> items can be in ordered & tags are local to a book ?
 -> close to a playlist
+=> def playlist and that's all (maybe with playlist crossref to know easily in which playlist is an item ?)

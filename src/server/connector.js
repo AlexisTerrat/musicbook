@@ -1,9 +1,14 @@
-var express = require('express');
-var Sequelize = require('sequelize');
 var _ = require('underscore');
+var express = require('express');
+var when = require('when');
+var mongoose = require('mongoose');
+mongoose.Promise = when.promise;
 
 function Connector() {
   var that = this;
+
+  that.Item = mongoose.model('Item', require('./schemas/item.js'));
+  that.Tag = mongoose.model('Tag', require('./schemas/tag.js'));
 
   function middleware(req, res, next) {
     req.connector = that;
@@ -15,34 +20,14 @@ function Connector() {
 
 Connector.prototype.init = function() {
   var that = this;
-  var sequelize = new Sequelize('database', 'user', 'password', {
-    'host': 'db',
-    'port': '5432',
-    'dialect': 'postgres'
-  });
-  var modelPaths = [
-    './models/item.js',
-    './models/tag.js'
-  ];
-  var models = {};
-  that.sequelize = sequelize;
 
-  _.each(modelPaths, function(modelPath) {
-    var model = sequelize.import(modelPath);
-    models[model.name] = model;
-  });
+  mongoose.connect('mongodb://db/musicbook');
+  that.db = mongoose.connection;
+  that.db.on('error', console.log.bind(console));
 
-  _.extend(that, models);
-
-  _.each(models, function(model) {
-    if ('onload' in model) {
-      model.onload(that);
-    }
-  });
-
-  return sequelize.authenticate()
-  .then(function() {
-    return sequelize.sync();
+  return when.promise(function(resolve, reject) {
+    that.db.once('error', reject);
+    that.db.once('open', resolve);
   });
 };
 

@@ -6,8 +6,8 @@
     "when": "*",
     "express": "*",
     "body-parser": "*",
-    "sequelize": "*",
-    "pg": "*",
+    "morgan": "*",
+    "mongoose": "*",
     "bower": "*"
   },
   "scripts": {

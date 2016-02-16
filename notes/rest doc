@@ -29,3 +29,44 @@ Tags:
     return tag
   PUT /api/tag/:tagId { name }
   DELETE /api/tag/:tagId
+
+
+Ressources: user, item, tag
+
+User:
+  GET /api/user/:id
+    return User
+  POST /api/user
+    body: User (without id)
+    return User (with id)
+  PUT /api/user/:id
+    body: User
+  DELETE /api/user/:id
+
+Tag:
+  GET /api/user/:id/tag
+    return [tag.id]
+  GET /api/user/:id/tag/:id
+    return Tag
+  POST /api/user/:id/tag
+    body: Tag (without id)
+    return: Tag (with id)
+  PUT /api/user/:id/tag/:id
+    body: Tag
+  DELETE /api/user/:id/tag/:id
+
+Item:
+  GET /api/user/:id/item
+    return [item.id]
+  GET /api/user/:id/item/:id
+    return Item
+  GET /api/user/:id/item/:id/tag
+    return [tag.id]
+  POST /api/user/:id/item
+    body: Item (without id)
+    return Item (with id)
+  PUT /api/user/:id/item/:id
+    body: Item
+  DELETE /api/user/:id/item/:id
+  POST /api/user/:id/item/:id/tag/:id
+  DELETE /api/user/:id/item/:id/tag/:id
