@@ -1,39 +1,44 @@
-Items:
+--- Ressources ---
 
-Item: { id, title }
-Tag: { id, name }
+Session: { -> store that in redis would be the best
+  id: string,
+  token: string, // this will be set as cookie
+  userId: User.id, // undefined if guest session
+  expire: int // epoch time
+}
 
+User: {
+  id: string,
+  email: string,
+  tags: [Tag.id]
+}
 
-Items:
-  GET /api/items
-    return [item]
-  GET /api/item/:itemId
-    return item
-  POST /api/item { title }
-    return item
-  PUT /api/item/:itemId { title }
-  DELETE /api/item/:itemId
+Credentials: {
+  id: string,
+  userId: User.id,
+  hash: string,
+  salt: string
+}
 
-ItemTags:
-  GET /api/item/:itemId/tags
-    return [tags]
-  POST /api/item/:itemId/tag/:tagId
-  DELETE /api/item/:itemId/tag/:tagId
+Item: {
+  id: string,
+  userId: User.id,
+  artist: string, // optional
+  album: string, // optional
+  title: string,
+  links: [string], // optional, default to []
+  tags: [Tag.id] // optional, default to []
+}
 
-Tags:
-  GET /api/tags
-    return [tag]
-  GET /api/tag/:tagId
-    return tag
-  POST /api/tag { name }
-    return tag
-  PUT /api/tag/:tagId { name }
-  DELETE /api/tag/:tagId
+Tag: {
+  id: string,
+  userId: User.id,
+  name: string
+}
 
+==========================================================
 
-Ressources: user, item, tag
-
-User:
+--- User ---
   GET /api/user/:id
     return User
   POST /api/user
@@ -43,9 +48,9 @@ User:
     body: User
   DELETE /api/user/:id
 
-Tag:
+--- Tag ---
   GET /api/user/:id/tag
-    return [tag.id]
+    return [Tag]
   GET /api/user/:id/tag/:id
     return Tag
   POST /api/user/:id/tag
@@ -55,13 +60,13 @@ Tag:
     body: Tag
   DELETE /api/user/:id/tag/:id
 
-Item:
+--- Item ---
   GET /api/user/:id/item
-    return [item.id]
+    return [Item]
   GET /api/user/:id/item/:id
     return Item
   GET /api/user/:id/item/:id/tag
-    return [tag.id]
+    return [Tag]
   POST /api/user/:id/item
     body: Item (without id)
     return Item (with id)
@@ -70,3 +75,14 @@ Item:
   DELETE /api/user/:id/item/:id
   POST /api/user/:id/item/:id/tag/:id
   DELETE /api/user/:id/item/:id/tag/:id
+
+--- Session Management ---
+  POST /api/login -> if successful expires current session and creates a new one (as user)
+    body: Credentials { email, password }
+    return: User
+  POST /api/logout -> expires current session and creates a new one (as guest)
+  POST /api/signup
+    body: Credentials { email, password }
+
+Notes:
+- except for /signup & /login, all other request must be made by a logged user.

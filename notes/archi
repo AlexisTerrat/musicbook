@@ -1,0 +1,14 @@
+backend:
+-> dev a nice framework service oriented
+
+ServiceManager:
+  init & monitor services
+
+Services have dependencies => dependencies injection => init graph -> angular style :P
+module.exports = {
+  name: 'myService'
+  dependencies: ['dep1', 'dep2']
+  factory: function(dep1, dep2...) { // where dep1 is the instance of the 'dep1' service factory
+    this.init = function() { return promise; };
+  }
+}

@@ -2,7 +2,7 @@ var express = require('express');
 var _ = require('underscore');
 
 function jsonifyTag(tag) {
-  return { id: tag._id, name: tag.name };
+  return _.pick(tag, 'id', 'name');
 }
 
 var controller = express.Router();

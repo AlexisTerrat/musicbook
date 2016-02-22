@@ -1,6 +1,5 @@
 docker stop musicbook-app
 docker rm -v musicbook-app
-docker rmi musicbook-app
 docker build -t musicbook-app .
 docker run -d --name musicbook-app \
   --link musicbook-db:db \

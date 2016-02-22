@@ -2,13 +2,14 @@
   "name": "musicbook",
   "description": "webapp utility to store favorite music in the cloud",
   "dependencies": {
+    "bower": "*",
     "underscore": "*",
     "when": "*",
-    "express": "*",
-    "body-parser": "*",
-    "morgan": "*",
+    "winston": "*",
+    "churchill": "*",
     "mongoose": "*",
-    "bower": "*"
+    "express": "*",
+    "body-parser": "*"
   },
   "scripts": {
     "postinstall": "bower --allow-root install",

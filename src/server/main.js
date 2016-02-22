@@ -1,45 +1,33 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var morgan = require('morgan');
-var Connector = require('./connector.js');
-var Router = require('./router.js');
-var _ = require('underscore');
+var when = require('when');
+var loggerFactory = require('service/logger/logger.js');
+var dbFactory = require('service/db/db.js');
+var authenticatorFactory = require('service/authenticator.js');
+var authorizerFactory = require('service/authorizer/authorizer.js');
+var apiFactory = require('service/api/api.js');
+var webFactory = require('service/web/web.js');
 
 (function run() {
-  var server = express();
-  var connector = new Connector();
-  var router = new Router();
+  var startOrders = [ // ordered by start priority
+    { name: 'logger', factory: loggerFactory },
+    { name: 'db', factory: dbFactory },
+    { name: 'authenticator', factory: authenticatorFactory },
+    { name: 'authorizer', factory: authorizerFactory },
+    { name: 'api', factory: apiFactory },
+    { name: 'web', factory: webFactory },
+  ];
 
-  morgan.token('body', function(req, res) {
-    var body = req.body;
-    if (_.isUndefined(body)) {
-      return "";
-    }
-    if (_.isString(body)) {
-      return body;
-    }
-    return JSON.stringify(body);
+  var startTasks = _.map(startOrders, function(order) {
+    return function(services) {
+      return when.lift(order.factory)() // promisify the return of factory
+      .then(function(service) {
+        services[order.name] = service;
+        return services;
+      });
+    };
   });
-  morgan.token('body', function(req, res) {
-    var body = req.body;
-    if (_.isUndefined(body)) {
-      return "";
-    }
-    if (_.isString(body)) {
-      return body;
-    }
-    return JSON.stringify(body);
-  });
-  morgan.format('customDev', ':date[iso] :method :status :url :body');
 
-  server.use('/', express.static('src/webapp'));
-  server.use('/api', bodyParser.json());
-  server.use('/api', morgan('customDev'));
-  server.use('/api', connector.middleware);
-  server.use('/api', router.middleware);
-
-  return connector.init()
-  .then(function() {
-    server.listen(8080);
+  return when.pipeline(startTasks, {})
+  .then(function(services) {
+    services.logger.info('server successfully started');
   });
 })();

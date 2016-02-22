@@ -8,13 +8,10 @@ angular.module('app')
     abstract: true,
     views: {
       'navbar@': {
-        templateUrl: 'scripts/components/navbar/navbar.html'
+        templateUrl: 'scripts/app/navbar/navbar.html'
       },
       'body@': {
-        templateUrl: 'scripts/components/body/body.html'
-      },
-      'footer@': {
-        templateUrl: 'scripts/components/footer/footer.html'
+        templateUrl: 'scripts/app/body/body.html'
       }
     }
   });
