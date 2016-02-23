@@ -38,15 +38,15 @@ Tag: {
 
 ==========================================================
 
---- User ---
-  GET /api/user/:id
-    return User
-  POST /api/user
-    body: User (without id)
-    return User (with id)
-  PUT /api/user/:id
-    body: User
-  DELETE /api/user/:id
+//--- User ---
+//  GET /api/user/:id
+//    return User
+//  POST /api/user
+//    body: User (without id)
+//    return User (with id)
+//  PUT /api/user/:id
+//    body: User
+//  DELETE /api/user/:id
 
 --- Tag ---
   GET /api/user/:id/tag
@@ -83,6 +83,7 @@ Tag: {
   POST /api/logout -> expires current session and creates a new one (as guest)
   POST /api/signup
     body: Credentials { email, password }
+    return User ? -> ie internally calls login
 
 Notes:
 - except for /signup & /login, all other request must be made by a logged user.

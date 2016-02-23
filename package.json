@@ -9,7 +9,9 @@
     "churchill": "*",
     "mongoose": "*",
     "express": "*",
-    "body-parser": "*"
+    "helmet": "*",
+    "body-parser": "*",
+    "cookie-parser": "*"
   },
   "scripts": {
     "postinstall": "bower --allow-root install",

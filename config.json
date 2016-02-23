@@ -1,0 +1,16 @@
+{
+  "port": 80,
+  "db": "mongodb://db/musicbook",
+  "ssl": {
+    "key": "ssl/default.key",
+    "cert": "ssl/default.crt"
+  },
+  "credentials": {
+    "digest": "sha512",
+    "keyLength": 512,
+    "saltLength": 128,
+    "iterations": 100000
+  },
+  "cookieTimeout": 10000000,
+  "logLevel": "debug"
+}
